@@ -18,4 +18,4 @@ tests -> all automated test suites
     all tests that must run wihtout any external connections such as 
     databases, external APIs and on our case, the fileSystem
 
-bruno-api-client -> API client https://www.usebruno.com/
+bruno-api-client -> API client file https://www.usebruno.com/
