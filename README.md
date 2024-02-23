@@ -17,3 +17,5 @@ tests -> all automated test suites
   - unit tests 
     all tests that must run wihtout any external connections such as 
     databases, external APIs and on our case, the fileSystem
+
+bruno-api-client -> API client https://www.usebruno.com/
