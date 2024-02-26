@@ -23,6 +23,12 @@ const userRoutes = routes({
 
 const allRoutes = {
     ...userRoutes,
+    '/session/login:post': async(request, response) => {
+        response.write(JSON.stringify({
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+        })),
+        response.end()
+    },
     // 404 routes
     default: (request, response) => {
         response.writeHead(404, DEFAULT_HEADER)
