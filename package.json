@@ -5,7 +5,8 @@
   "main": "api.js",
   "type": "module",
   "scripts": {
-    "start": "node --watch src/index.js"
+    "start": "node --watch src/index.js",
+    "test": "node --test tests/"
   },
   "keywords": [],
   "author": "",
