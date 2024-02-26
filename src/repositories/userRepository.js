@@ -21,5 +21,7 @@ export default class UserRepository {
             this.file,
             JSON.stringify(currentFile)
         )
+
+        return data.id
     }
 }

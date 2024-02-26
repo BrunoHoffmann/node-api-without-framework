@@ -6,7 +6,10 @@ const routes = ({
     userService
 }) => ({
     '/users:get': async(request, response) => {
-        response.write('GET'),
+        const users = await userService.find()
+        response.write(JSON.stringify({
+            results: users
+        })),
         response.end()
     },
     '/users:post': async(request, response) => {
@@ -14,7 +17,8 @@ const routes = ({
         const item = JSON.parse(data)
         const user = new User(item)
 
-        const id = user.id
+        const id = await userService.create(user)
+    
         response.writeHead(201, DEFAULT_HEADER)
         response.write(JSON.stringify({
             id,

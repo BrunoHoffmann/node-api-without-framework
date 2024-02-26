@@ -1,18 +1,28 @@
 import { parse } from 'node:url'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
 import { DEFAULT_HEADER } from './util/util.js'
 import { routes } from './routes/userRoute.js'
+import { generateInstance } from './factories/userFactory.js'
 
+const currentDir = dirname(
+    fileURLToPath(
+        import.meta.url
+    )
+)
+
+const filePath = join(currentDir, '..', 'database', 'data.json')
+
+const userService = generateInstance({
+    filePath
+})
 const userRoutes = routes({
-    userService: {}
+    userService
 })
 
 const allRoutes = {
     ...userRoutes,
-    '/session/login:post': (request, response) => {
-        console.log(request.body)
-        response.write('login')
-        response.end()
-    },
     // 404 routes
     default: (request, response) => {
         response.writeHead(404, DEFAULT_HEADER)
