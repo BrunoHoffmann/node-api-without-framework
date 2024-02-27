@@ -27,6 +27,7 @@ const allRoutes = {
         response.write(JSON.stringify({
             token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
         })),
+        
         response.end()
     },
     // 404 routes
@@ -44,6 +45,17 @@ function handler(request, response) {
     const { pathname } = parse(url, true)
     const key = `${pathname}:${method.toLowerCase()}`
     const chosen = allRoutes[key] || allRoutes.default
+
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    
+    if (method === 'OPTIONS') {
+        // if is a OPTIONS request, only send the cors headers and finish the request
+        response.writeHead(200);
+        response.end();
+        return;
+    }
 
     return Promise.resolve(chosen(request, response))
     .catch(handlerError(response))
